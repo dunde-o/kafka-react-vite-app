@@ -2,9 +2,15 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { VITE_API_URL } from './env/env'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const handleClick = async () => {
+    const res = await fetch(VITE_API_URL + '/demo/message?message=Hello', { method: 'GET' })
+    console.log('Response:', res)
+  }
 
   return (
     <>
@@ -20,6 +26,9 @@ function App() {
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
+        </button>
+        <button onClick={handleClick}>
+          api call
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
