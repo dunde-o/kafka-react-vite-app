@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:kubernetes": "tsc -b && vite build --mode kubernetes",
     "lint": "eslint .",
     "preview": "vite preview"
   },

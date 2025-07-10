@@ -8,7 +8,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   const handleClick = async () => {
-    const res = await fetch(VITE_API_URL + '/demo/message?message=Hello', { method: 'GET' })
+    const res = await fetch(VITE_API_URL + '/api/demo/message?message=Hello', { method: 'GET' })
     console.log('Response:', res)
   }
 

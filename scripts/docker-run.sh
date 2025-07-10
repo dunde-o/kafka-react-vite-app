@@ -2,7 +2,6 @@
 
 # 공통 설정
 NETWORK="docker_default" # 도커 네트워크 이름(kafka docker compose 경로 + 프로필)
-API_BASE_URL="http://gateway:8080"
 
 # 사용자명 인자 체크
 if [ -z "$1" ]; then
@@ -19,10 +18,10 @@ docker network create "$NETWORK" 2>/dev/null || echo "네트워크 '$NETWORK'이
 echo ""
 echo "🚀 [frontend] 빌드 및 컨테이너 실행 중..."
 
-TAG="${DOCKER_HUB_ID}/frontend:latest"
+TAG="${DOCKER_HUB_ID}/frontend:dev"
 
 # 도커 이미지 빌드
-docker build -t "$TAG" . || { echo "❌ Docker 빌드 실패: $TAG"; exit 1; }
+docker build -t "$TAG" -f Dockerfile.dev . || { echo "❌ Docker 빌드 실패: $TAG"; exit 1; }
 
 # Docker Hub에 푸시
 docker push "$TAG" || { echo "❌ Docker 푸시 실패: $TAG"; exit 1; }
